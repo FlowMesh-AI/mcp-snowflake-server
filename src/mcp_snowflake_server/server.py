@@ -362,7 +362,7 @@ async def main(
 
     all_tools = [
         Tool(
-            name="list_databases",
+            name="snowflake_list_databases",
             description="List all available databases in Snowflake",
             input_schema={
                 "type": "object",
@@ -371,7 +371,7 @@ async def main(
             handler=handle_list_databases,
         ),
         Tool(
-            name="list_schemas",
+            name="snowflake_list_schemas",
             description="List all schemas in a database",
             input_schema={
                 "type": "object",
@@ -386,7 +386,7 @@ async def main(
             handler=handle_list_schemas,
         ),
         Tool(
-            name="list_tables",
+            name="snowflake_list_tables",
             description="List all tables in a specific database and schema",
             input_schema={
                 "type": "object",
@@ -399,7 +399,7 @@ async def main(
             handler=handle_list_tables,
         ),
         Tool(
-            name="describe_table",
+            name="snowflake_describe_table",
             description="Get the schema information for a specific table",
             input_schema={
                 "type": "object",
@@ -414,7 +414,7 @@ async def main(
             handler=handle_describe_table,
         ),
         Tool(
-            name="read_query",
+            name="snowflake_read_query",
             description="Execute a SELECT query.",
             input_schema={
                 "type": "object",
@@ -424,7 +424,7 @@ async def main(
             handler=handle_read_query,
         ),
         Tool(
-            name="append_insight",
+            name="snowflake_append_insight",
             description="Add a data insight to the memo",
             input_schema={
                 "type": "object",
@@ -440,7 +440,7 @@ async def main(
             tags=["resource_based"],
         ),
         Tool(
-            name="write_query",
+            name="snowflake_write_query",
             description="Execute an INSERT, UPDATE, or DELETE query on the Snowflake database",
             input_schema={
                 "type": "object",
@@ -451,7 +451,7 @@ async def main(
             tags=["write"],
         ),
         Tool(
-            name="create_table",
+            name="snowflake_create_table",
             description="Create a new table in the Snowflake database",
             input_schema={
                 "type": "object",
@@ -529,7 +529,7 @@ async def main(
             raise ValueError(f"Unknown tool: {name}")
 
         # Pass exclusion_config to the handler if it's a listing function
-        if name in ["list_databases", "list_schemas", "list_tables"]:
+        if name in ["snowflake_list_databases", "snowflake_list_schemas", "snowflake_list_tables"]:
             return await handler(
                 arguments,
                 db,
